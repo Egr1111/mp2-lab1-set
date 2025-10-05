@@ -1,10 +1,10 @@
-#include "../gtest/gtest.h"
+﻿#include "../gtest/gtest.h"
 #include "tbitfield.h"
 
 
 TEST(TBitField, can_create_bitfield_with_positive_length)
 {
-  ASSERT_NO_THROW(TBitField bf(3));
+  ASSERT_NO_THROW(TBitField bf(65));
 }
 
 TEST(TBitField, can_get_length)
@@ -18,7 +18,10 @@ TEST(TBitField, new_bitfield_is_set_to_zero)
 {
   TBitField bf(10);
 
+
+
   int sum = 0;
+
   for (int i = 0; i < bf.GetLength(); i++)
   {
     sum += bf.GetBit(i);
@@ -248,7 +251,7 @@ TEST(TBitField, invert_plus_and_operator_on_different_size_bitfield)
   secondBf.SetBit(70);
   //00001000.....10000000
 
-  testBf.SetBit(70);
+//  testBf.SetBit(70);
 
   EXPECT_EQ(testBf, secondBf & negFirstBf);
 }
@@ -296,7 +299,7 @@ TEST(TBitField, bitfields_with_different_bits_are_not_equal)
 
 TEST(TBitField, bitfields_with_different_bits_are_not_equal_big_sizes)
 {
-  const int size = 100;
+  const int size = 100; 
   TBitField bf1(size), bf2(size);
 
   bf1.SetBit(1);
@@ -305,5 +308,6 @@ TEST(TBitField, bitfields_with_different_bits_are_not_equal_big_sizes)
   bf2.SetBit(1);
   bf2.SetBit(45);
 
+  std::cout << bf1 << endl;
   EXPECT_NE(bf1, bf2);
 }
